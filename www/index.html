@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- Designed and developed by Business Solution Apps team v -->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title> m-Reporting </title>
+
+        <link rel="stylesheet" href="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.css" />
+        <link rel="stylesheet" href="static/my.css" />
+        <style>         /* App custom styles */    </style>
+
+        <script src="static/jquery/1.7.2/jquery.min.js">   </script>
+        <script src="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js">   </script>
+        <script src="static/em.js">  </script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		
+    </head>
+    <body>  
+	
+		<!----------Log in------------>
+		<div data-role="page" id="homePage">
+		
+			<div data-theme="b" data-role="header">
+                <a data-role="button" href="#infoPage" data-icon="gear" data-iconpos="left" class="ui-btn-left">Settings</a>
+                <a data-role="button" href="" class="ui-btn-right" onClick="exit()">Exit</a>
+                 <h3>Emergency Help</h3>
+		    </div>
+			<div data-role="content">
+		        <div data-role="fieldcontain">
+				<legend style="color:#C00"> State Your Emergency </legend>
+					<ul data-role="listview" data-inset="true" class="ui-icon-alt"  >
+						<li style="height:50px;"><a href="#emhelp">In Danger</a></li>
+						<li style="height:50px;"><a href="#emhelp">Injurred</a></li>
+					</ul>
+				</div>
+                </br></br></br>
+            </div>
+			<div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+		
+		</div>
+		<!----------- help page--->
+        <div data-role="page" id="emhelp">
+		
+            <div data-theme="b" data-role="header">
+			 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+                
+                <h3>help</h3>
+            </div>
+			
+			<div data-role="content">
+			
+			<div id="helperror" style="color:#FF0000;"> </div>
+			
+			
+					<input name="lat" id="lat" placeholder="" value="" type="hidden">
+					<input name="long" id="long" placeholder="" value="" type="hidden">
+					
+                    </br></br>
+					<input type="button" name="btnHelp" id="btnHelp" value="HELP" data-theme="e" />
+                    </br></br>
+				
+				
+								
+				
+            </div>
+			
+            <div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+			
+        </div>
+        
+                
+        <!-- info page -->
+		<div data-role="page" id="infoPage">
+		    <div data-theme="b" data-role="header">
+		        <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+		        <h3>Profile</h3>
+		    </div>
+		    
+			<div  data-role="content">
+				<label >Mobile No</label>
+				<input type="number" name="mbNo" id="mbNo" value="">
+				<label style="color:#C00" >PIN No (You must update profile after getting new PIN)</label>
+				<input type="number" name="pnNo" id="pnNo" value="">
+				<label >Name</label>
+				<input type="text" name="emName" id="emName" value="">
+				<label >Address</label>
+				<input type="text" name="emAdd" id="emAdd" value="">
+				<label >Contact One</label>
+				<input type="number" name="cnNo1" id="cnNo1" value="" min="0">
+				<label >Contact Two</label>
+				<input type="number" name="cnNo2" id="cnNo2" value="" min="0">
+				<label >Contact Three</label>
+				<input type="number" name="cnNo3" id="cnNo3" value="" min="0">
+				<label >Contact Four</label>
+				<input type="number" name="cnNo4" id="cnNo4" value="" min="0">
+				<label >Contact Five</label>
+				<input type="number" name="cnNo5" id="cnNo5" value="" min="0">
+				<label >Notes</label>
+				<input type="text" name="emNotes" id="emNotes" value="">
+				
+				<input type="submit" id="submitdata" name="submitdata" href="#sucess" value="Update Profile" >
+				
+			</div>
+		    <div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+			
+		</div>
+		<div data-role="page" id="sucess">
+		
+            <div data-theme="b" data-role="header">
+				<a data-role="button" href="#homePage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+                <h3>Profile Update</h3>
+            </div>
+			
+			<div data-role="content" align="center">
+				
+				</br></br>
+			
+				<h3 style="color:#39F">Profile Updated Successfully</h3>
+                
+				</br></br>	
+				<div data-role="fieldcontain">
+					
+				</div>
+					   
+            </div>
+			
+            <div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+			
+        </div>
+ 
+    </body>
+</html>
