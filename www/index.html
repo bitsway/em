@@ -8,7 +8,10 @@
 
         <link rel="stylesheet" href="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.css" />
         <link rel="stylesheet" href="static/my.css" />
-        <style>         /* App custom styles */    </style>
+        <style> 
+		/* App custom styles */
+		#help>.ui-btn{ height:85px; border:5px solid #E2E2FE; color:#0080FF; font-weight:bold; padding:0px 0px 0px 0px;}
+		</style>
 
         <script src="static/jquery/1.7.2/jquery.min.js">   </script>
         <script src="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js">   </script>
@@ -16,6 +19,7 @@
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		
     </head>
+	
     <body>  
 	
 		<!----------Log in------------>
@@ -27,48 +31,26 @@
                  <h3>Emergency Help</h3>
 		    </div>
 			<div data-role="content">
-		        <div data-role="fieldcontain">
+				
+		        
 				<legend style="color:#C00"> State Your Emergency </legend>
-					<ul data-role="listview" data-inset="true" class="ui-icon-alt"  >
-						<li style="height:50px;"><a href="#emhelp">In Danger</a></li>
-						<li style="height:50px;"><a href="#emhelp">Injurred</a></li>
-					</ul>
-				</div>
-                </br></br></br>
-            </div>
-			<div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
-		
-		</div>
-		<!----------- help page--->
-        <div data-role="page" id="emhelp">
-		
-            <div data-theme="b" data-role="header">
-			 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
-                
-                <h3>help</h3>
-            </div>
-			
-			<div data-role="content">
-			
-			<div id="helperror" style="color:#FF0000;"> </div>
-			
-			
+				<br/>
+				<div id="help">
 					<input name="lat" id="lat" placeholder="" value="" type="hidden">
 					<input name="long" id="long" placeholder="" value="" type="hidden">
-					
-                    </br></br>
-					<input type="button" name="btnHelp" id="btnHelp" value="HELP" data-theme="e" />
-                    </br></br>
-				
-				
-								
-				
+					<button class="btnHelp" data-theme="e"><h2>In Danger</h2></button></br>
+					<button class="btnHelp" data-theme="e"><h2>Injurred</h2></button>
+					<!--<input type="button" name="btnDanger" class="btnHelp" value="In Danger" data-theme="e" /> </br>
+					<input type="button" name="btnInjurred" id="injured" class="btnHelp" value="Injurred" data-theme="e" />-->
+				</div>
+                </br></br>
+                <div id="helperror" style="color:#FF0000;"> </div>
+                </br>
             </div>
-			
-            <div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
-			
-        </div>
-        
+			<div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+			<div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="../images/gplogo_small.png" alt="" /></div>
+		
+		</div>
                 
         <!-- info page -->
 		<div data-role="page" id="infoPage">
@@ -78,31 +60,38 @@
 		    </div>
 		    
 			<div  data-role="content">
-				<label >Mobile No</label>
+			
+				<div id="dataerror" style="color:#FF0000;" align="center"> </div>
+				
+				<label style="color:#009; font-weight:bold">Your Mobile No</label>
 				<input type="number" name="mbNo" id="mbNo" value="">
-				<label style="color:#C00" >PIN No (You must update profile after getting new PIN)</label>
+				<label style="color:#009; font-weight:bold" >PIN <font color="#000099" size="2px">(To get new PIN: SMS "SOS ON" to 2765)</font></label><br>
+				<font color="#FF0000" size="2px"> Must update profile after getting new PIN </font>
 				<input type="number" name="pnNo" id="pnNo" value="">
 				<label >Name</label>
 				<input type="text" name="emName" id="emName" value="">
 				<label >Address</label>
-				<input type="text" name="emAdd" id="emAdd" value="">
-				<label >Contact One</label>
+				<input type="text" name="emAdd" id="emAdd" value=""></br></br>
+                
+                <label style="color:#009; font-weight:bold" >Update the Contact Mobile Numbers in case of Emergency (GP Only)</label> </br>
+				<label >Mobile One</label>
 				<input type="number" name="cnNo1" id="cnNo1" value="" min="0">
-				<label >Contact Two</label>
+				<label >Mobile Two</label>
 				<input type="number" name="cnNo2" id="cnNo2" value="" min="0">
-				<label >Contact Three</label>
+				<label >Mobile Three</label>
 				<input type="number" name="cnNo3" id="cnNo3" value="" min="0">
-				<label >Contact Four</label>
+				<label >Mobile Four</label>
 				<input type="number" name="cnNo4" id="cnNo4" value="" min="0">
-				<label >Contact Five</label>
+				<label >Mobile Five</label>
 				<input type="number" name="cnNo5" id="cnNo5" value="" min="0">
 				<label >Notes</label>
 				<input type="text" name="emNotes" id="emNotes" value="">
 				
 				<input type="submit" id="submitdata" name="submitdata" href="#sucess" value="Update Profile" >
-				
+				<br/><br/><br/><br/><br/>
+								
 			</div>
-		    <div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+		    <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="../images/gplogo_small.png" alt="" /></div>
 			
 		</div>
 		<div data-role="page" id="sucess">
@@ -125,7 +114,7 @@
 					   
             </div>
 			
-            <div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
+            <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="../images/gplogo_small.png" alt="" /></div>
 			
         </div>
  
