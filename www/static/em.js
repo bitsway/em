@@ -221,7 +221,7 @@ function get_help() {
 	var long=$("#long").val();
 	
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
-		$("#helperror").text('invalid pin No');
+		$("#helperror").text('Invalid authorization, to register or to get new pin, sms SOS ON to 2765 and update your profile');
 	}else{
 //		alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
 		
