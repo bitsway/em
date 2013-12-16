@@ -4,14 +4,15 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title> m-Reporting </title>
+        <title>SOS</title>
 
         <link rel="stylesheet" href="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.css" />
         <link rel="stylesheet" href="static/my.css" />
         <style> 
 		/* App custom styles */
 		#help>.ui-btn{ height:85px; border:5px solid #E2E2FE; color:#0080FF; font-weight:bold; padding:0px 0px 0px 0px;}
-		</style>
+
+        </style>
 
         <script src="static/jquery/1.7.2/jquery.min.js">   </script>
         <script src="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js">   </script>
@@ -26,29 +27,45 @@
 		<div data-role="page" id="homePage">
 		
 			<div data-theme="b" data-role="header">
-                <a data-role="button" href="#infoPage" data-icon="gear" data-iconpos="left" class="ui-btn-left">Settings</a>
-                <a data-role="button" href="" class="ui-btn-right" onClick="exit()">Exit</a>
-                 <h3>Emergency Help</h3>
+                <a data-role="button" href="#infoPage" data-icon="gear" data-iconpos="left" class="ui-btn-left">Profile</a>
+                <a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()">Exit</a>
+                 <h3>SOS</h3>
 		    </div>
-			<div data-role="content">
+			<div data-role="content" >
 				
 		        
-				<legend style="color:#C00"> State Your Emergency </legend>
-				<br/>
+				<legend style="color:#C00;"><br/>
+				</legend>
 				<div id="help">
 					<input name="lat" id="lat" placeholder="" value="" type="hidden">
 					<input name="long" id="long" placeholder="" value="" type="hidden">
-					<button class="btnHelp" data-theme="e"><h2>In Danger</h2></button></br>
-					<button class="btnHelp" data-theme="e"><h2>Injurred</h2></button>
+					<button class="btnHelp" data-theme="e" id="indanger" name="indanger"><h2>In Danger</h2></button></br>
+					<button class="btnHelp" data-theme="e" id="injurred" name="injurred"><h2>Injurred</h2></button>
 					<!--<input type="button" name="btnDanger" class="btnHelp" value="In Danger" data-theme="e" /> </br>
 					<input type="button" name="btnInjurred" id="injured" class="btnHelp" value="Injurred" data-theme="e" />-->
 				</div>
                 </br></br>
+                
                 <div id="helperror" style="color:#FF0000;"> </div>
                 </br>
+                
+                <font size="-1" color="#333333">
+                Tips:
+                <ul>
+                	<li>To register or get new pin, sms SOS ON to 2765</li>
+                    <li>Update your profile with PIN and contacts numbers  </li>
+                    <li>PIN can be used once  </li>
+                    <li>For Security reason profile and contact is not visible on the app</li>
+                    <li>Please update profile with contact numbers if you reinstall or get new pin</li>
+                    <li>To provide your accurate location, please keep the GPS on</li>
+                    <li>Always inform your contacts that you are using this application, so they know about the notification</li>
+                </ul>
+                </font>
+                
+                
             </div>
-			<div data-theme="b" data-role="footer" style="font-size:12px" align="center" >m-Reporting</div>
-			<div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="../images/gplogo_small.png" alt="" /></div>
+			<div data-theme="b" data-role="footer" style="font-size:12px" align="center" >SOS</div>
+			<div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>
 		
 		</div>
                 
@@ -88,10 +105,23 @@
 				<input type="text" name="emNotes" id="emNotes" value="">
 				
 				<input type="submit" id="submitdata" name="submitdata" href="#sucess" value="Update Profile" >
-				<br/><br/><br/><br/><br/>
+				<br/><br/><br/>
+                <font size="-1" color="#333333">
+                Tips:
+                <ul>
+                	<li>To register or get new pin, sms SOS ON to 2765</li>
+                    <li>Update your profile with PIN and contacts numbers  </li>
+                    <li>PIN can be used once  </li>
+                    <li>For Security reason profile and contact is not visible on the app</li>
+                    <li>Please update profile with contact numbers if you reinstall or get new pin</li>
+                    <li>To provide your accurate location, please keep the GPS on</li>
+                    <li>Always inform your contacts that you are using this application, so they know about the notification</li>
+                </ul>
+                </font>
+                <br/><br/><br/>
 								
 			</div>
-		    <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="../images/gplogo_small.png" alt="" /></div>
+		    <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>
 			
 		</div>
 		<div data-role="page" id="sucess">
@@ -114,7 +144,7 @@
 					   
             </div>
 			
-            <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="../images/gplogo_small.png" alt="" /></div>
+            <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >Powered by&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>
 			
         </div>
  
