@@ -4,20 +4,22 @@ var apipath='http://e.businesssolutionapps.com/em/default/';
 
 
 //-------GET GEO LOCATION----------------------------
-function test() { //location
-		navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	}
+function getlocationand_askhelp() { //location
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	
+}
 	
 // onSuccess Geolocation
 function onSuccess(position) {
-	$("#lat").val(position.coords.latitude)
-	$("#long").val(position.coords.longitude)
-
+	$("#lat").val(position.coords.latitude);
+	$("#long").val(position.coords.longitude);
+	get_help();
 }
 	
 function onError(error) {
-	$("#lat").val(0)
-	$("#long").val(0)
+	$("#lat").val(0);
+	$("#long").val(0);
+	get_help();
 	//alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
 	}
 //-------GET GEO LOCATION----------------------------
@@ -197,13 +199,21 @@ $("#submitdata").click(function(){
 
 
 
-$('#indanger').click(function(){	
-	get_help()
+$('#indanger').click(function(){
+
+	$("#helperror").show();
+	$("#helperror").text('Getting Location .... ');
+	getlocationand_askhelp();
+
+
+	
 	
 	});//click
 
-$('#injurred').click(function(){	
-	get_help()
+$('#injurred').click(function(){
+	$("#helperror").show();
+	$("#helperror").text('Getting Location .... ');	
+	getlocationand_askhelp()
 	
 	});//click
 
@@ -215,7 +225,6 @@ $('#injurred').click(function(){
 //--------------------------------------------- Get Help
 
 function get_help() { 
-	test();
 	
 	var lat=$("#lat").val();
 	var long=$("#long").val();
@@ -223,7 +232,8 @@ function get_help() {
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
 		$("#helperror").text('Invalid authorization, to register or to get new pin, sms SOS ON to 2765 and update your profile');
 	}else{
-//		alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
+		//alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
+//		$("#helperror").text('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
 		
 		$.ajax({
 		 // url:'http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long,
@@ -231,7 +241,14 @@ function get_help() {
 			    url:apipath+'track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long,
 			   success: function(result) {
 				   if (result=='Success'){
-					   	$("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
+					   if (lat=='0') {
+						   $("#helperror").text('Emergency Contacts are communicated. Please keep the GPS on to provide better location to your contacts. Use the buttons to report your location if you need to move. Take care. '); 
+							   
+					   }else{
+						   $("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
+					   }
+					   
+					   	
 					   }else{	
 						   $("#helperror").text('Invalid authorization, to register or to get new pin, sms SOS ON to 2765');
 						   }
