@@ -1,10 +1,17 @@
 // Put your custom code here
 //var apipath='http://127.0.0.1:8000/em/default/';
+//var apipath='http://e.businesssolutionapps.com/em/default/';
+//var apipath='http://127.0.0.1:8000/em/default/';
 var apipath='http://e.businesssolutionapps.com/em/default/';
+//var apipath='http://127.0.0.1:8000/em/default/';
+
+
+var helpCount = 0;
 
 
 //-------GET GEO LOCATION----------------------------
 function getlocationand_askhelp() { //location
+//	$("#helperror").text('inside ask help');
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	
 }
@@ -13,12 +20,14 @@ function getlocationand_askhelp() { //location
 function onSuccess(position) {
 	$("#lat").val(position.coords.latitude);
 	$("#long").val(position.coords.longitude);
+//	$("#helperror").text('success');
 	get_help();
 }
 	
 function onError(error) {
 	$("#lat").val(0);
 	$("#long").val(0);
+//	$("#helperror").text('failed');
 	get_help();
 	//alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
 	}
@@ -203,17 +212,19 @@ $('#indanger').click(function(){
 
 	$("#helperror").show();
 	$("#helperror").text('Getting Location .... ');
+	setInterval("getlocationand_askhelp()",1000);
 	getlocationand_askhelp();
-
-
-	
-	
+//	$("#helperror").hide();
+//	navigator.app.exitApp();
 	});//click
 
 $('#injurred').click(function(){
 	$("#helperror").show();
-	$("#helperror").text('Getting Location .... ');	
+	$("#helperror").text('Getting Location .... ');
+	setInterval("getlocationand_askhelp()",1000);
 	getlocationand_askhelp()
+//	$("#helperror").hide();
+//	navigator.app.exitApp();
 	
 	});//click
 
@@ -228,12 +239,12 @@ function get_help() {
 	
 	var lat=$("#lat").val();
 	var long=$("#long").val();
-	
+//	$("#helperror").text('inside get help');
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
 		$("#helperror").text('Invalid authorization, to register or to get new pin, sms SOS ON to 2765 and update your profile');
 	}else{
-		//alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
-//		$("#helperror").text('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
+//		alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
+		$("#helperror").text('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
 		
 		$.ajax({
 		 // url:'http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long,
@@ -249,14 +260,29 @@ function get_help() {
 					   }
 					   
 					   	
-					   }else{	
-						   $("#helperror").text('Invalid authorization, to register or to get new pin, sms SOS ON to 2765');
-						   }
+				   }else{	
+					   $("#helperror").text('Invalid authorization, to register or to get new pin, sms SOS ON to 2765');
+					   }
+//				setTimeout(
+//					   function (){
+//						   $("#helperror").hide();
+//						   }
+//					   ,5000);
+				   
 			   }//result
 		   
 		   });//ajax
 	
 		}//else
+	
+	helpCount = helpCount+1;
+//	$("#helperror").text(helpCount);
+	$("#helperror").text('');
+//	exit();
+	if (helpCount>2){
+//		$("#helperror").text('inside count');
+		exit();
+	}
 }
 
 //--------------------------------------------- Exit Application
