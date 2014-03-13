@@ -4,155 +4,624 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>SOS</title>
+        <title>PANIC</title>
         
-        <link rel="stylesheet" href="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.css" />
+<!--        <link rel="stylesheet" href="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.css" />-->
+		
         <link rel="stylesheet" href="static/my.css" />
-        <style> 
+<!--        <style> 
 		/* App custom styles */
 		#help>.ui-btn{ height:85px; border:5px solid #E2E2FE; color:#0080FF; font-weight:bold; padding:0px 0px 0px 0px;}
 		#help>.ui-btn{ height:85px; border:5px solid #E2E2FE; color:#0080FF; font-weight:bold; padding:0px 0px 0px 0px;}
 		.btnClicked{background-color:#900;}
 
-        </style>
+        </style>-->
 
-        <script src="static/jquery/1.7.2/jquery.min.js">   </script>
-        <script src="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js">   </script>
-        <script src="static/em.js">  </script>
+<!--        <script src="static/jquery/1.7.2/jquery.min.js">   </script>
+        <script src="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js">   </script>-->
+        
+		<link rel="stylesheet" href="static/themes/C.min.css" />
+		<link rel="stylesheet" href="static/themes/jquery.mobile.icons.min.css" />
+        
+        <link rel="stylesheet" href="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.css" />
+        <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
+        <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
+		
+        
+        
+		<script src="static/em.js">  </script>
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+				$("#mbNo").val(localStorage.mobileNo);
+				$("#emName").val(localStorage.emName);
+				$("#emAdd").val(localStorage.address);
+				$("#cnNo1").val(localStorage.cnNo1);
+				$("#cnNo2").val(localStorage.cnNo2);
+				$("#cnNo3").val(localStorage.cnNo3);
+				$("#cnNo4").val(localStorage.cnNo4);
+				$("#cnNo5").val(localStorage.cnNo5);
+				$("#emNotes").val(localStorage.emnotes);
+		
+		 
+		});
+		
+		</script>
+        
+        
+        <style>
+		/*.ui-content{ background-color:#484848}*/
+				.custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on {
+			text-indent: -5.9em;
+		}
+		.custom-size-flipswitch.ui-flipswitch .ui-flipswitch-off {
+			text-indent: 0.5em;
+		}
+		/* Custom widths are needed because the length of custom labels differs from
+		   the length of the standard labels */
+		.custom-size-flipswitch.ui-flipswitch {
+			width: 8.875em;
+		}
+		.custom-size-flipswitch.ui-flipswitch.ui-flipswitch-active {
+			padding-left: 7em;
+			width: 1.875em;
+		}
+		@media (min-width: 28em) {
+			// Repeated from rule .ui-flipswitch above
+			.ui-field-contain > label + .custom-size-flipswitch.ui-flipswitch {
+				width: 1.875em;
+			}
+		}
+		input[type=number],input[type=text]{ background-color:#F4FFFF;}
+		
+		.full-width-slider input {
+			display: none;
+			
+		}
+		.full-width-slider .ui-slider-track {
+			margin-left: 15px;
+			
+		}
+		
+	
+		</style>
 		
     </head>
-	
-    <body>  
-	
-		<!----------Log in------------>
-		<div data-role="page" id="homePage">
+	<!--onLoad="checkNew()"-->
+    <body onLoad="checkNew()">  
+		<!----------------------------1st Page slide to unlock page------------------------------>
+						
+		<div data-theme="c"  data-role="page" id="inPage" >
+			<!-- about DMP panel-->
+			<div data-role="panel" id="aboutpanel" data-display="overlay"  style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()">Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+					</ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+			<!-- help panel-->
+			<div data-role="panel" id="sliderHelp" data-display="overlay" data-position="right" style="width:60%;">
+				<!-- panel content goes here -->
+				<font style="color:#007D7D; font-size:25px;"> Help</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
+             
+                <ul>
+               	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
+                    <li>Update your profile with PIN and contacts numbers  </li>
+                    <li>PIN can be used once  </li>
+                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
+                    
+                    
+                    <li>To provide your accurate location, please keep the GPS on</li>
+                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                    <li>Be Safe</li>
+                </ul>
+                </font>
+                <br/><br/>
+				
+			</div><!-- /panel -->
 		
-			<div data-theme="b" data-role="header">
-                <a data-role="button" href="#infoPage" data-icon="gear" data-iconpos="left" class="ui-btn-left">Profile</a>
-                <a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()">Exit</a>
-                 <h3>Panic Button</h3>
-		    </div>
-			<div data-role="content" >
+            <div data-theme="c" data-role="header" >
+            <img src="header.png" alt="DMP" />
+			<a data-role="button" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()" style="display:none">Exit</a>
+            </div>
+			
+			<div data-theme="c" data-role="content" align="center" style="background-color:#007D7D">
+			<br>
+				<font style="color:#FFF; font-size:25px; text-shadow:none;">Panic Button</font>
+				<br>
+				<font style="color:#FFF; font-size:12px; text-shadow:none;">Child Lock - Slide to Unlock</font>
+				<br>
+				<!--<form>	
+						<select id="checkSlider" name="checkSlider" onChange="checkLockUnlock()"  data-role="slider" style="height:100px;">
+							<option value="off" >Unlock</option>
+							<option value="on">Lock</option>
+						</select>-->
+								
+					<form class="full-width-slider">
+					<input name="checkSlider" id="checkSlider" onChange="checkLockUnlock()" data-highlight="true" min="0" max="100" value="10"  type="range" >
+					
+<!--					 <input type="checkbox" data-role="flipswitch" onChange="checkProfile()" name="flip-checkbox" id="flip-checkbox" data-on-text="Slide-Lock" data-off-text="Slide to Unlock" data-wrapper-class="custom-size-flipswitch">-->
+				</form>
+				<!--<a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" onClick="checkProfile()" style="background-color:#0CC; border:none" >Unlock</a>-->
+				
+					   
+            </div>
+			
+            <!--<div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >&nbsp;
+            <img src="gplogo_small.png" alt="Grameen Phone" /></div>-->
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px; " align="center" data-position="fixed">
+            <a data-role="button" href="#aboutpanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
+            <a data-role="button" href="#sliderHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px;">Help</a><!--<img  style="height:25px; width:25px;" src="logo_circle_1.png" alt="DMP" />&nbsp;&nbsp;&nbsp;<img src="gp_logo.png" alt="Grameen Phone" />--></div>
+        </div><!--end slider page-->
+		
+		<!----------------------------about Page------------------------------>
+		<div data-theme="c" data-role="page" id="about">
+		
+		<!-- about DMP panel-->
+			<div data-role="panel" id="aboutPagePanel" data-display="overlay"  style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()">Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+					</ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+			<div  data-theme="c" data-role="header" style="font-size:12px; height:40px;"  data-position="fixed">
+				<div><img  src="header.png" alt="DMP" /></div>
+                <a data-role="button" href="#inPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+                
+            </div>
+			
+			<div data-role="content" align="left" >
+				
+				</br></br>
+			
+				
+                
+				
+				<font style="color:#F8F8F8; font-size:25px;"> About</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style=" color:#FFFFFF;text-decoration:none; text-shadow:none;">             
+                Panic button is an initiative from Dhaka Metropolitan Police (DMP) to service excellence and commitment to the safety of the citizen. Your panic alert will be received by nearest Police station and your profile contacts. Alert will contain you GPS location when available.
+                </font>
+				
+				
+				
+ 
 
-                <div id="helperror" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word" hidden="true" > </div>
+				</br></br>
+				
+				
+					   
+            </div>
+		
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <a data-role="button" href="#aboutPagePanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a></div>
+        </div><!--end about page-->
+		
+		<!----------------------------Disclaimer Page------------------------------>
+		<div data-theme="c" data-role="page" id="disclaimer">
+		
+			<!-- about DMP panel-->
+			<div data-role="panel" id="dPagePanel" data-display="overlay"  style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()" >Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+					</ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+			<div data-theme="c" data-role="header" style="font-size:12px; height:40px;" data-position="fixed">
+				<div><img  src="header.png" alt="DMP" /></div>
+                <a data-role="button" href="#inPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+               
+            </div>
+			
+			<div data-role="content" align="left" >
+				
+				</br></br>
+			
+			
+			<font style="color:#F5F5F5; font-size:25px;"> Disclaimer</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style=" color:#FFFFFF;text-decoration:none; text-shadow:none;">
+             
+                
+               	  Panic button is an initiative from Dhaka Metropolitan Police (DMP) to service excellence and commitment to the safety of the citizen. 
+Your panic alert will be received by nearest Police station including the location.  While DMP & GP provides its best effort, they will not be liable for any loss or damage in using this service. Users of the service are advised to take standard safe measures as usual.				                   
+
+                
+                </font>
+			
+			
+			
+				</br></br>
+				
+				
+					   
+            </div>
+		
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <a data-role="button" href="#dPagePanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a></div>
+        </div><!--end Disclaimer page-->
+		
+		<!----------------------------safty Page------------------------------>
+		<div data-theme="c" data-role="page" id="safty">
+		
+		<!-- about DMP panel-->
+			<div data-role="panel" id="sPagePanel" data-display="overlay"  style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()">Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+					</ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+			
+           
+            <div data-theme="c" data-role="header" >
+                
+               <img  src="header.png" alt="DMP" />
+				<a data-role="button" href="#inPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" >Back</a>
+            </div>
+			<!--<div data-theme="c" data-role="header" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <img  src="header.png" alt="DMP" />
+               <a data-role="button" href="#inPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right" >Back</a>
+		    </div>-->
+            
+			
+			<div data-role="content" align="left" >
+				
+				</br></br>
+			
+				<font style="color:#F5F5F5; font-size:25px;"> Safety Tips</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style=" color:#FFFFFF;text-decoration:none; text-shadow:none;">
+             
+                <ul>
+               	   <li><strong>In case of fire outbreak :</strong></br>
+							Ask for assistance by dialing 999 or the nearest Police Station phone number in case of sudden outbreak of fire. </li></br>
+                    <li><strong>Personal security :</strong></br>
+DMP provides security to the person who reasonably shows ground to be protected.</li></br>
+                    <li><strong>Money Escort:</strong></br>
+DMP provides Money Escort to citizens. </li></br>
+                    <li><strong>Assistance to the victim :</strong></br>
+Providing security and assistance to the victim of criminal case is the prime duty of DMP. Victim just needs to contact DMP for his/her protection. DMP personnel also mentor the victims of criminal cases in legal matters.</li>
+
+                </ul>
+                </font>
+			
+				
+							
+				
+
+
+
+
+
+
+                
+				</br></br>
+				<div  id="safety_tips" style="color:#F5F5F5;display:none"></div>
+                
+                
+				
+					   
+            </div>
+		
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <a data-role="button" href="#sPagePanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
+            </div>
+        </div><!--end safty page-->
+		
+		
+		<!-----------------------------BUTTON page------------------------------>
+		<div data-theme="c" data-role="page" id="homePage" >
+		
+		<!-- about DMP panel-->
+			<div data-role="panel" id="aboutButtonPanel" data-display="overlay" style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()" >Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+			  </ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+		<!-- panic button page panel-->
+			<div data-role="panel" id="panicHelp" data-display="overlay" data-position="right" style="width:80%;">
+				<!-- panel content goes here -->
+				
+				<font style="color:#007D7D; font-size:25px;"> Help</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
+             
+                <ul>
+               	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
+                    <li>Update your profile with PIN and contacts numbers  </li>
+                    <li>PIN can be used once  </li>
+                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
+                    
+                    
+                    <li>To provide your accurate location, please keep the GPS on</li>
+                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                    <li>Be Safe</li>
+                </ul>
+                </font>
+                <br/><br/>
+				
+				
+		  </div><!-- /panel -->
+		
+			<div style="height:40px" data-theme="c" data-role="header" data-position="fixed" >
+            
+               <div><img  src="header.png" alt="DMP" /></div>
+				<a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" class="ui-btn-left" onClick="exit()" style="display:none" >Exit</a>
+                
+                 
+                 <!--<a data-role="button" href="#infoPage" data-iconpos="gear"  class="ui-btn-right" >Profile</a>-->
+                  <a data-role="button" href="#infoPage" data-icon="gear" data-iconpos="left" class="ui-btn-right" >Profile</a>
+		    </div>
+			<div data-theme="c" data-role="content" style="background-color:#007D7D" >
+
+                <div id="helperror" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word;display:none" > </div>
+                <div id="info" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word; display:none"> </div>
                 </br>
-				<div id="help">
-					<input name="lat" id="lat" placeholder="" value="" type="hidden">
+				<div data-theme="c" id="help" >
+					<input name="lat" id="lat" placesholder="" value="" type="hidden">
 					<input name="long" id="long" placeholder="" value="" type="hidden">
 
                     
-				  <button class="btnHelp" data-theme="e" id="indanger" name="indanger" style="background-color:#CFC; height:200px" ><h2><font color="#FF0000" face="Arial, Helvetica, sans-serif"><img src="T_36.png"> In Danger </font> </h2></button></br>
-					<button class="btnHelp" data-theme="e" id="injurred" name="injurred"><h2><font color="#FF0000" face="Arial, Helvetica, sans-serif" ><img src="T_36.png"> Injured</font></h2></button>
+				  <button class="btnHelp" data-theme="c" id="indanger" name="indanger" >
+                  <h2><font color="#FF0000" size="-1"><img src="icon-96-xhdpi.png"> </font></h2></button>
+                  </br>
+					<!--<button class="btnHelp" data-theme="e" id="injurred" name="injurred"><h2><font color="#FF0000" face="Arial, Helvetica, sans-serif" ><img src="T_36.png"> Injured</font></h2></button>-->
 					<!--<input type="button" name="btnDanger" class="btnHelp" value="In Danger" data-theme="e" /> </br>
 					<input type="button" name="btnInjurred" id="injured" class="btnHelp" value="Injurred" data-theme="e" />-->
 				</div>
                 
                 
                 </br></br>
-                
+               <!-- 
 
-                
-                <font size="-1" color="#333333">
-                Tips:
-                </font><ul>
-                	<li><font color="#333333" size="-1">To register or get new pin, sms PANIC ON to 2765</font></li>
-                    <li><font color="#333333" size="-1">Update your profile with PIN and contacts numbers. PIN can be used once</font></li>
-                    <li><font color="#333333" size="-1">For Security reason profile and contact is not visible on the app</font></li>
-                    <li><font color="#333333" size="-1">Please update profile with contact numbers if you reinstall or get new pin</font></li>
-                    <li><font color="#333333" size="-1">To provide your accurate location, please keep the GPS on</font></li>
-                    <li><font color="#333333" size="-1">Always inform your contacts that you are using this application, so they know about the notification</font></li>
-                </ul>
-                
-                
-                
-            </div>
-			<div data-theme="b" data-role="footer" style="font-size:12px" align="center" ></div>
-			<div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>
-		
-		</div>
-                
-        <!-- info page -->
-		<div data-role="page" id="infoPage">
-		    <div data-theme="b" data-role="header">
-		        <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
-		        <h3>Profile</h3>
-		    </div>
-		    
-			<div  data-role="content">
-			
-				
-				
-				<label style="color:#009; font-weight:bold">Your Mobile No</label>
-				<input type="number" name="mbNo" id="mbNo" value="">
-				<label style="color:#009; font-weight:bold" >PIN <font color="#000099" size="2px">(To get new PIN: SMS "SOS ON" to 2765)</font></label><br>
-				<font color="#FF0000" size="2px"> Must update profile after getting new PIN </font>
-				<input type="number" name="pnNo" id="pnNo" value="">
-				<label >Name</label>
-				<input type="text" name="emName" id="emName" value="">
-				<label >Address</label>
-				<input type="text" name="emAdd" id="emAdd" value=""></br></br>
-                
-                <label style="color:#009; font-weight:bold" >Update the Contact Mobile Numbers in case of Emergency (GP Only)</label> </br>
-				<label >Mobile One</label>
-				<input type="number" name="cnNo1" id="cnNo1" value="" min="0">
-				<label >Mobile Two</label>
-				<input type="number" name="cnNo2" id="cnNo2" value="" min="0">
-				<label >Mobile Three</label>
-				<input type="number" name="cnNo3" id="cnNo3" value="" min="0">
-				<label >Mobile Four</label>
-				<input type="number" name="cnNo4" id="cnNo4" value="" min="0">
-				<label >Mobile Five</label>
-				<input type="number" name="cnNo5" id="cnNo5" value="" min="0">
-				<label >Notes</label>
-				<input type="text" name="emNotes" id="emNotes" value="">
-				
-				<input type="submit" id="submitdata" name="submitdata" href="#sucess" value="Update Profile" >
-				<br/><br/>
-                <div id="dataerror" style="color:#FF0000;" align="center"> </div>
-                <br/><br/>
-                <font size="-1" color="#333333">
+                <font  color="#CCCCCC" face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
                 Tips:
                 <ul>
-                	<li>To register or get new pin, sms SOS ON to 2765</li>
-                    <li>Update your profile with PIN and contacts numbers  </li>
-                    <li>PIN can be used once  </li>
+                	<li>To register or get new pin, sms PANIC ON to 2764</li>
+                    <li>Update your profile with PIN and contacts numbers. PIN can be used once</li>
                     <li>For Security reason profile and contact is not visible on the app</li>
                     <li>Please update profile with contact numbers if you reinstall or get new pin</li>
                     <li>To provide your accurate location, please keep the GPS on</li>
                     <li>Always inform your contacts that you are using this application, so they know about the notification</li>
                 </ul>
                 </font>
+                -->
+                
+            </div>
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px; " align="center" data-position="fixed">
+            <a data-role="button" href="#aboutButtonPanel" data-iconpos="left" class="ui-btn-left" style=" margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
+            <a data-role="button" href="#panicHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px; ;">Help</a>			
+			</div><!--/footer-->
+		
+		</div><!--/button page-->
+                
+        <!--  --------------------------- Profile -------------------  -->
+		<div data-theme="c" data-role="page" id="infoPage">
+			
+			<!-- about DMP panel-->
+			<div data-role="panel" id="aboutProfilePanel" data-display="overlay" style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()" >Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+			  </ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+			
+			<!-- profile panel-->
+			<div data-role="panel" id="profileHelp" data-display="overlay" data-position="right" style="width:80%;">
+				<!-- panel content goes here -->
+				
+				<font style="color:#007D7D; font-size:25px;"> Help</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
+             
+                <ul>
+               	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
+                    <li>Update your profile with PIN and contacts numbers  </li>
+                    <li>PIN can be used once  </li>
+                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
+                    <li>To provide your accurate location, please keep the GPS on</li>
+                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                    <li>Be Safe</li>
+                </ul>
+                </font>
+                <br/><br/>
+				
+				
+		  </div><!-- /panel -->
+			
+			
+		    <div style="height:40px" data-theme="c" data-role="header" data-position="fixed"  >
+		        <div><img  src="header.png" alt="DMP" /></div>
+                
+                
+                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+		        <!--<a data-role="button" href="#aboutProfilePanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px;"><img  src="header.png" alt="DMP" /></a>-->
+              
+                
+		    </div>
+		    
+			<div  data-role="content" >
+			
+						
+			<font style="color:#CCCCCC; font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif; text-decoration:none; text-shadow:none;" >	
+				
+				<label  style="font-size:12px;">Your Mobile No</label>
+				<input type="number" name="mbNo" id="mbNo" placeholder="Your Mobile No" value="" >
+				<!--<label style="font-size:12px;">PIN (To get new PIN: SMS "PANIC ON" to 2764)</label><br>
+				Must update profile after getting new PIN -->
+				<label  style="font-size:12px;">PIN (sms PANIC START to 2764)</label>
+				<input type="password" name="pnNo" id="pnNo" placeholder="PIN" value="">
+				<label  style="font-size:12px;">Name</label>
+				<input type="text" name="emName" id="emName" placeholder="Name" value="">
+				<label  style="font-size:12px;">Address</label>
+				<input type="text" name="emAdd" id="emAdd" placeholder="Address" value="">				
+                <label  style="font-size:12px;">Contact Numbers</label>
+				
+				<input type="number" name="cnNo1" id="cnNo1" placeholder="Mobile One" value="" min="0">
+				
+				<input type="number" name="cnNo2" id="cnNo2" placeholder="Mobile Two" value="" min="0">
+				
+				<input type="number" name="cnNo3" id="cnNo3" placeholder="Mobile Three" value="" min="0">
+				
+
+				
+								
+				
+				<input type="submit" id="submitdata" name="submitdata" href="" value="Update Profile" >
+				
+			  </font>
+                <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <br/><br/>
+
                 <br/><br/><br/>
 								
 			</div>
-		    <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>
-			
-		</div>
-		<div data-role="page" id="sucess">
+		    <!--<div style="font-size:12px; background-color:#FFF; vertical-align:top;" align="center" >&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>-->			
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <a data-role="button" href="#aboutProfilePanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
+            <a data-role="button" href="#profileHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px; ;">Help</a>			
+			</div><!--/footer-->
+		</div><!-- /profile page -->
 		
-            <div data-theme="b" data-role="header">
-				<a data-role="button" href="#homePage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
-                <h3>Profile Update</h3>
+        <!--  --------------------------- terms page------------------  -->
+        
+        <div data-theme="c" data-role="page" id="terms">
+			<!-- about DMP panel-->
+			<div data-role="panel" id="aboutTermsPanel" data-display="overlay" style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
+				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a onClick="safety()" >Safety Tips</a></li>
+							<li><a href="#disclaimer">Disclaimer</a></li>
+							<li><a href="#about">About</a></li>
+					</ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+			
+			
+			<!-- profile panel-->
+			<div data-role="panel" id="termsHelp" data-display="overlay" data-position="right" style="width:80%;">
+				<!-- panel content goes here -->
+				
+				<font style="color:#007D7D; font-size:25px;"> Help</font>
+				<br><br>
+				 
+                <font face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
+             
+                <ul>
+               	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
+                    <li>Update your profile with PIN and contacts numbers  </li>
+                    <li>PIN can be used once  </li>
+                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
+                    
+                    
+                    <li>To provide your accurate location, please keep the GPS on</li>
+                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                    <li>Be Safe</li>
+                </ul>
+                </font>
+                <br/><br/>
+				
+				
+			</div><!-- /panel -->
+		
+            <div data-theme="c" data-role="header" >
+                
+               <img  src="header.png" alt="DMP" />
+				<a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()" style="display:none">Exit</a>
             </div>
 			
 			<div data-role="content" align="center">
 				
-				</br></br>
+				
 			
-				<h3 style="color:#39F">Profile Updated Successfully</h3>
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">Panic button is an initiative from Dhaka Metropolitan Police (DMP) to service excellence and commitment to the safety of the citizen. Your panic alert will be received by nearest Police station including the location. Read help to learn more.</font>
                 
 				</br></br>	
-				<div data-role="fieldcontain">
-					
-				</div>
+				<a data-role="button" href="" onClick="checkProfile()" >Next</a>
 					   
             </div>
 			
-            <div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >&nbsp;
-            <img src="gplogo_small.png" alt="Grameen Phone" /></div>
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <a data-role="button" href="#aboutTermsPanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
+            <a data-role="button" href="#termsHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px; ;">Help</a>			
+			</div><!--/footer-->
 			
-        </div>
+        </div><!--/terms page-->
  
     </body>
 </html>

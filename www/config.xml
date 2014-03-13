@@ -6,10 +6,10 @@
         id        = "com.sosmobile.droid"
         version   = "1.0.0">
 
-    <name>SOS</name>
+    <name>Panic Button</name>
 
     <description>
-        SOS
+        Panic Button
     </description>
 
     <author href="http://businesssolutionapps.com" email="sabbir456@gmail.com">
