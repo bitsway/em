@@ -234,7 +234,7 @@ $('#indanger').click(function(){
 	var url="#inPage";
 	$(location).attr('href',url);
 	
-	setInterval("getlocationand_askhelp()",600000);
+//	setInterval("getlocationand_askhelp()",600000);
 //	setInterval("getlocationand_askhelp()",10000);
 //	getlocationand_askhelp();
 //	$("#helperror").hide();
@@ -282,7 +282,7 @@ function get_help() {
 					   }else{
 						   $("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
 					   }
-					   
+					   exit();
 					   	
 				   }else{	
 					   $("#helperror").show();
