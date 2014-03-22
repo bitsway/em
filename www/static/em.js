@@ -1,6 +1,9 @@
 // Put your custom code here
-var apipath='http://e.businesssolutionapps.com/panicbutton/default/';
 //var apipath='http://127.0.0.1:8000/em/default/';
+//var apipath='http://e.businesssolutionapps.com/em/default/';
+//var apipath='http://127.0.0.1:8000/em/default/';
+var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
+//var apipath='http://127.0.0.1:8000/em/default_with_sync_code/';
 
 
 var helpCount = 0;
@@ -52,8 +55,7 @@ function onError(error) {
 $(function() {
 $("#helperror").text('');
 
-$("#submitdata").click(function(){
-			
+$("#submitdata").click(function(){	
 		var mobileNo=$("#mbNo").val();
 		var strM=mobileNo.toString().length;
 		
@@ -81,6 +83,7 @@ $("#submitdata").click(function(){
 		var errorStr='';
 		
 		//----------------------
+		 
 		if(strM!=13){   //own number
 			if(strM==11){
 				mobileNo="88"+mobileNo;
@@ -90,48 +93,63 @@ $("#submitdata").click(function(){
 				errorStr=errorStr+' Mobile .';
 			}				
 		}
+		
 		//----------------------
-		if(cM1!=13){
-			if(cM1==11){
-				cnNo1="88"+cnNo1;
+		//if(cM1!=0){
+			if(cM1!=13){
+				if(cM1==11){
+					cnNo1="88"+cnNo1;
+				}
+				else if(strM==0){
+					//nothing 
+				}
+				else{
+					cnNo1='';
+	//				errorflag=1;
+					//errorStr=errorStr+' Contact 1 .';
+				}				
 			}
-			else if(strM==0){
-				//nothing 
-			}
-			else{
-				cnNo1='';
-//				errorflag=1;
-				errorStr=errorStr+' Contact 1 .';
-			}				
-		}
+		//}
 		//-----------
-		if(cM2!=13){
-			if(cM2==11){
-				cnNo2="88"+cnNo2;
+		//if(cM2!=0){
+			if(cM2!=13){
+				if(cM2==11){
+					cnNo2="88"+cnNo2;
+				}
+				else if(strM==0){
+					//nothing 
+				}
+				else{
+					cnNo2='';
+	//				errorflag=1;
+					//errorStr=errorStr+' Contact 2 .';
+				}				
 			}
-			else if(strM==0){
-				//nothing 
-			}
-			else{
-				cnNo2='';
-//				errorflag=1;
-				errorStr=errorStr+' Contact 2 .';
-			}				
-		}
+		//}
+			
 		//-----------
-		if(cM3!=13){
-			if(cM3==11){
-				cnNo3="88"+cnNo3;
+		//if(cM3!=0){
+			if(cM3!=13){
+				if(cM3==11){
+					cnNo3="88"+cnNo3;
+				}
+				else if(strM==0){
+					//nothing 
+				}
+				else{
+					cnNo3='';
+	//				errorflag=1;
+					errorStr=errorStr+' Contact 3 .';
+				}				
 			}
-			else if(strM==0){
-				//nothing 
-			}
-			else{
-				cnNo3='';
-//				errorflag=1;
-				errorStr=errorStr+' Contact 3 .';
-			}				
+	//	}
+		
+		if(localStorage.syncCode!=undefined){
+			syncCode=localStorage.syncCode
+		}else{
+				syncCode='';
 		}
+		
 		//-----------
 		/*if(cM4!=13){
 			if(cM4==11){
@@ -165,7 +183,7 @@ $("#submitdata").click(function(){
 //				errorflag=1
 //				errorStr=' Invalid Contact Mobile No';
 //			}
-		
+		//$("#dataerror").text(apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&syncCode='+localStorage.syncCode+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3))
 		if (errorflag==1){
 			errorStr = 'Invalid : '+errorStr;
 			$("#dataerror").text(errorStr);			
@@ -177,7 +195,7 @@ $("#submitdata").click(function(){
 			
 			
 				$.ajax({
-						   url:apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3),
+						   url:apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&syncCode='+syncCode+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3),
 						   
 						   success: function(result) {
 				   
@@ -190,6 +208,8 @@ $("#submitdata").click(function(){
 						localStorage.cnNo1=cnNo1;
 						localStorage.cnNo2=cnNo2;
 						localStorage.cnNo3=cnNo3;
+						localStorage.syncCode=result;
+						$("#pnNo").val(localStorage.pinNo)
 						/*localStorage.cnNo4=cnNo4;
 						localStorage.cnNo5=cnNo5;
 						localStorage.emnotes=emnotes;*/
@@ -209,10 +229,10 @@ $("#submitdata").click(function(){
 						//var url="#sucess";
 						var url="#homePage";
 						$(location).attr('href',url);
-						$("#dataerror").text(' ');
 					  
 				   }else{
-					   $("#dataerror").text('Invalid Mobile or wrong/used PIN, to register or to get new pin, sms PANIC START to 2764');
+					   $("#dataerror").text('Invalid Mobile or PIN, to register or to get new pin, sms PANIC START to 2764');
+					   //$("#dataerror").text(apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&syncCode='+localStorage.syncCode+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3))
 					   //alert("Invalid PIN");
 					   }
 				   
@@ -234,8 +254,7 @@ $('#indanger').click(function(){
 	var url="#inPage";
 	$(location).attr('href',url);
 	
-//	setInterval("getlocationand_askhelp()",600000);
-//	setInterval("getlocationand_askhelp()",10000);
+	setInterval("getlocationand_askhelp()",10000);
 //	getlocationand_askhelp();
 //	$("#helperror").hide();
 //	navigator.app.exitApp();
@@ -269,7 +288,7 @@ function get_help() {
 	}else{
 //		alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
 		//$("#helperror").text('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
-		$("#helperror").text('');
+		
 		$.ajax({
 		 // url:'http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long,
 		 //url:'http://e.businesssolutionapps.com/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long
@@ -282,7 +301,7 @@ function get_help() {
 					   }else{
 						   $("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
 					   }
-					   exit();
+					   
 					   	
 				   }else{	
 					   $("#helperror").show();
@@ -338,6 +357,7 @@ function resetSlider(){
 //-----------------------------check new
 
 function checkNew(){
+	
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
 		
 			var url="#terms";

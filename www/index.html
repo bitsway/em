@@ -42,6 +42,7 @@
 				$("#cnNo4").val(localStorage.cnNo4);
 				$("#cnNo5").val(localStorage.cnNo5);
 				$("#emNotes").val(localStorage.emnotes);
+				$("#pnNo").val(localStorage.pinNo)
 		
 		 
 		});
@@ -110,7 +111,7 @@
 			</div><!-- /panel -->
 			
 			<!-- help panel-->
-			<div data-role="panel" id="sliderHelp" data-display="overlay" data-position="right" style="width:60%;">
+			<div data-role="panel" id="sliderHelp" data-display="overlay" data-position="right" style="width:80%;">
 				<!-- panel content goes here -->
 				<font style="color:#007D7D; font-size:25px;"> Help</font>
 				<br><br>
@@ -519,11 +520,11 @@ Providing security and assistance to the victim of criminal case is the prime du
 				<!--<label style="font-size:12px;">PIN (To get new PIN: SMS "PANIC ON" to 2764)</label><br>
 				Must update profile after getting new PIN -->
 				<label  style="font-size:12px;">PIN (sms PANIC START to 2764)</label>
-				<input type="password" name="pnNo" id="pnNo" placeholder="PIN" value="">
+				<input type="number" name="pnNo" id="pnNo" placeholder="PIN" value="">
 				<label  style="font-size:12px;">Name</label>
 				<input type="text" name="emName" id="emName" placeholder="Name" value="">
 				<label  style="font-size:12px;">Address</label>
-				<input type="text" name="emAdd" id="emAdd" placeholder="Address" value="">				
+				<input name="emAdd" type="text" id="emAdd" placeholder="Address" value="" maxlength="250" >				
                 <label  style="font-size:12px;">Contact Numbers</label>
 				
 				<input type="number" name="cnNo1" id="cnNo1" placeholder="Mobile One" value="" min="0">
@@ -542,7 +543,7 @@ Providing security and assistance to the victim of criminal case is the prime du
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
-                <br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/>
 								
 			</div>
 		    <!--<div style="font-size:12px; background-color:#FFF; vertical-align:top;" align="center" >&nbsp;<img src="gplogo_small.png" alt="Grameen Phone" /></div>-->			
