@@ -3,13 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.sosmobile.droid"
+        id        = "com.businesssolutionapps.dmppanicbutton"
         version   = "1.0.1">
 
-    <name>Panic Button</name>
+    <name>DMP Panic Button</name>
 
     <description>
-        Panic Button
+        DMP Panic Button
     </description>
 
     <author href="http://businesssolutionapps.com" email="sabbir456@gmail.com">
