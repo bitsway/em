@@ -2,8 +2,9 @@
 //var apipath='http://127.0.0.1:8000/em/default/';
 //var apipath='http://e.businesssolutionapps.com/em/default/';
 //var apipath='http://127.0.0.1:8000/em/default/';
+//var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
+//var apipath='http://127.0.0.1:8000/panicbutton/default_with_sync_code/';
 var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
-//var apipath='http://127.0.0.1:8000/em/default_with_sync_code/';
 
 
 var helpCount = 0;
@@ -286,7 +287,7 @@ function get_help() {
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
 		$("#helperror").text('Invalid authorization, to register or to get new pin, sms PANIC START to 2764 and update your profile');
 	}else{
-//		alert('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
+		//alert(apipath+'track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
 		//$("#helperror").text('http://127.0.0.1:8000/em/default/track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
 		
 		$.ajax({
@@ -300,6 +301,7 @@ function get_help() {
 							   
 					   }else{
 						   $("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
+						 
 					   }
 					   exit();
 					   	
