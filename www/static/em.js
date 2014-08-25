@@ -7,6 +7,7 @@
 var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
 
 
+
 var helpCount = 0;
 var slideFlag=0;
 
@@ -403,3 +404,26 @@ function safety() {
 	   var url="#safty";	
 	   $(location).attr('href',url);
 	}//function
+
+function feedback(){
+		var f_app_use=$("input[name='find_app_use']:checked").val();		
+		var txt_fdback=$("#txt_fdback").val();
+		var mobile_no=localStorage.mobileNo;
+		
+		$.ajax({
+			   type: 'POST',
+			   url:apipath+'feedback?mobile_no='+localStorage.mobileNo+'&txt_fdback='+txt_fdback+'&f_app_use='+f_app_use,
+			   success: function(result) {
+				   var f_result=result;				   
+				   if (f_result=='success'){
+					   var url="#inPage";	
+	   					$(location).attr('href',url);
+					   }
+				   
+				   }
+			   
+			   })
+		
+		}
+
+
