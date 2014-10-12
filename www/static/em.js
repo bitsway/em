@@ -1,12 +1,8 @@
 // Put your custom code here
-//var apipath='http://127.0.0.1:8000/em/default/';
-//var apipath='http://e.businesssolutionapps.com/em/default/';
-//var apipath='http://127.0.0.1:8000/em/default/';
-//var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
 //var apipath='http://127.0.0.1:8000/panicbutton/default_with_sync_code/';
 var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
 
-
+var button_flag=0;
 
 var helpCount = 0;
 var slideFlag=0;
@@ -17,6 +13,7 @@ function getlocationand_askhelp() {
 //location
 //	$("#helperror").text('inside ask help');
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	
 }
 	
 // onSuccess Geolocation
@@ -25,13 +22,15 @@ function onSuccess(position) {
 	$("#lat").val(position.coords.latitude);
 	$("#long").val(position.coords.longitude);
 //	$("#helperror").text('success');
-	helpCount = helpCount+1;
+	get_help();
+
+/*	helpCount = helpCount+1;
 	if (helpCount<=2){
 		get_help();
 		$("#info").text(helpCount);
 	}else{
 		$("#info").text("more than twice");
-	}
+	}*/
 	
 }
 	
@@ -40,14 +39,17 @@ function onError(error) {
 	$("#lat").val(0);
 	$("#long").val(0);
 	//$("#helperror").text('location not found');
+
+	get_help();
 	
-	helpCount = helpCount+1;
+/*	helpCount = helpCount+1;
 	if (helpCount<=2){
 		get_help();
 		$("#info").text(helpCount);
 	}else{
 		$("#info").text("more than twice");
-	}
+	}*/
+	
 	//get_help();
 	//alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
 	}
@@ -150,19 +152,17 @@ $("#submitdata").click(function(){
 	//	}
 		
 		if(localStorage.syncCode!=undefined){
-			syncCode=localStorage.syncCode
+			syncCode=localStorage.syncCode;
 		}else{
 				syncCode='';
 		}
 		
-)
+
 		if (errorflag==1){
 			errorStr = 'Invalid : '+errorStr;
 			$("#dataerror").text(errorStr);			
 		}else{
 			//alert(apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3));
-			
-			
 			//http://e.businesssolutionapps.com/em/default/member?mNo='+mobileNo+'&pNo='+pinNo+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&notes='+encodeURI(emnotes)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3)+'&cNo4='+encodeURI(cnNo4)+'&cNo5='+encodeURI(cnNo5)
 			
 			
@@ -204,14 +204,23 @@ $("#submitdata").click(function(){
 
 
 $('#indanger').click(function(){
-	//$("#helperror").show();
-	$("#helperror").text('Getting Location .... ');
-	getlocationand_askhelp();	
+	if (button_flag ==0){
+		button_flag =1 ;
+		
+		$("#helperror").hide();
+		$("#loading").show();
+		$("#helperror").text('');
+		
+		
+		getlocationand_askhelp();	
+		
+		resetSlider();
+	}
 	
-	resetSlider();
+
 	
-	var url="#inPage";
-	$(location).attr('href',url);
+//	var url="#inPage";
+//	$(location).attr('href',url);
 	
 //	setInterval("getlocationand_askhelp()",10000);
 //	getlocationand_askhelp();
@@ -237,12 +246,13 @@ $('#injurred').click(function(){
 //--------------------------------------------- Get Help
 
 function get_help() { 
-	
+
 	var lat=$("#lat").val();
 	var long=$("#long").val();
 	$("#helperror").hide();
 //	$("#helperror").text('inside get help');
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
+		button_flag=0;
 		$("#helperror").show();
 		$("#helperror").text('Invalid authorization, to register or to get new pin, sms PANIC START to 2764 and update your profile');
 	}else{
@@ -256,17 +266,23 @@ function get_help() {
 			   success: function(result) {
 				   if (result=='Success'){
 					   if (lat=='0') {
-						   $("#helperror").show();
+						   //$("#helperror").show();
+						   button_flag=0;
+						   $("#loading").hide();
 						   $("#helperror").text('Emergency Contacts are communicated. Please keep the GPS on to provide better location to your contacts. Use the buttons to report your location if you need to move. Take care. '); 
 							   
 					   }else{
-						   $("#helperror").show();
-						   $("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
+						   button_flag=0;
+						   $("#loading").hide();
+						   //$("#helperror").show();
+						   $("#helperror").text('Emergency Contacts are communicated. Use the button to report your location if you need to move. Take care. ');
 						 
 					   }
 					   exit();
 					   	
-				   }else{	
+				   }else{
+					   button_flag=0;	
+				   	   $("#loading").hide();
 					   $("#helperror").show();
 					   $("#helperror").text('Invalid authorization, to register or to get new pin, sms PANIC START to 2764');
 
@@ -278,12 +294,13 @@ function get_help() {
 //						   }
 //					   ,5000);
 				   
-			   	}
-//				   ,
-//				error: function(result) {
-//					$("#helperror").show();
-//					$("#helperror").text("Submission failed. Please ensure you have internet connection.");
-//					} //result
+			   	},
+				error: function(result) {
+					button_flag=0;
+					$("#loading").hide();
+					$("#helperror").show();
+					$("#helperror").text("Submission failed. Please ensure you have internet connection.");
+					} //result
 		   
 		   });//ajax
 	
