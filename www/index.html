@@ -165,7 +165,7 @@
 						</select>-->
 								
 					<form class="full-width-slider">
-					<input name="checkSlider" id="checkSlider" onChange="checkLockUnlock()" data-highlight="true" min="0" max="100" value="10"  type="range" >
+					<input name="checkSlider" id="checkSlider" onChange="checkLockUnlock();" data-highlight="true" min="0" max="100" value="10"  type="range" >
 					
 <!--					 <input type="checkbox" data-role="flipswitch" onChange="checkProfile()" name="flip-checkbox" id="flip-checkbox" data-on-text="Slide-Lock" data-off-text="Slide to Unlock" data-wrapper-class="custom-size-flipswitch">-->
 				</form>
@@ -366,35 +366,33 @@ Providing security and assistance to the victim of criminal case is the prime du
                 
             </div>
 			
-			<div data-role="content" align="left" >
-				
-				</br></br>
-			
+			<div data-role="content" align="left" >				
+				<br>			
 				<font style="color:#F8F8F8; font-size:25px; text-shadow:none;"> Feedback</font>
-				<br><br>
-				<div id="feedback_msg" style="color:#FFFFFF; text-shadow:none;">Update profile than feedback</div>
+				<br>
+				<div id="feedback_msg" style="color:#CCFFCC; font-size:20px; text-shadow:none; text-align:center;">Please Register to Provide Feedback</div>
 				<div id="feedback_div">
-				 <ul data-role="listview" data-inset="true" id="pipe_conc">
+				 <ul data-role="listview" data-inset="true">
                     <li class="ui-field-contain">
                         <fieldset data-role="controlgroup">
-                            <legend>Do you find this apps useful.</legend>
-                            <input type="radio" name="find_app_use" id="find_app_use_y" value="YES">
-                            <label for="find_app_use_y">YES</label>
-                            <input type="radio" name="find_app_use" id="find_app_use_n" value="NO">
-                            <label for="find_app_use_n">NO</label>
+                            <legend>Rank this service </legend>
+                            <input type="radio" name="find_app_use" id="find_app_use_y" value="Very useful">
+                            <label for="find_app_use_y">Very useful</label>
+                            <input type="radio" name="find_app_use" id="find_app_use_n" value="Useful">
+                            <label for="find_app_use_n">Useful</label>
                             <input type="radio" name="find_app_use" id="find_app_use_na" value="NA">
                             <label for="find_app_use_na">Not Sure</label>
                         </fieldset>
                     </li>
                 </ul>
                <br/>
-				<font style="color:#F8F8F8;">Help us to improve our service</font><br/>
+				<font style="color:#F8F8F8;">Your feedback to improve the service</font><br/>
 				<textarea cols="30" rows="3" id="txt_fdback" name="txt_fdback" maxlength="200"></textarea>
 				<input type="submit"  onClick="feedback();" value="Submit"/>
                 </font>
 				</div>
-				</br></br>
-				   
+				<div style="color:#CCFFCC; text-shadow:none;" id="f_result_div"></div>
+				</br></br>				   
             </div>
 		
 			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
@@ -469,26 +467,10 @@ Providing security and assistance to the victim of criminal case is the prime du
 				  <button class="btnHelp" data-theme="c" id="indanger" name="indanger" >
                   <h2><font color="#FF0000" size="-1"><img src="icon-96-xhdpi.png"> </font></h2></button>
                   </br>
-					<!--<button class="btnHelp" data-theme="e" id="injurred" name="injurred"><h2><font color="#FF0000" face="Arial, Helvetica, sans-serif" ><img src="T_36.png"> Injured</font></h2></button>-->
-					<!--<input type="button" name="btnDanger" class="btnHelp" value="In Danger" data-theme="e" /> </br>
-					<input type="button" name="btnInjurred" id="injured" class="btnHelp" value="Injurred" data-theme="e" />-->
+				
 				</div>
                 </br></br>
-               <!-- 
-
-                <font  color="#CCCCCC" face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
-                Tips:
-                <ul>
-                	<li>To register or get new pin, sms PANIC ON to 2764</li>
-                    <li>Update your profile with PIN and contacts numbers. PIN can be used once</li>
-                    <li>For Security reason profile and contact is not visible on the app</li>
-                    <li>Please update profile with contact numbers if you reinstall or get new pin</li>
-                    <li>To provide your accurate location, please keep the GPS on</li>
-                    <li>Always inform your contacts that you are using this application, so they know about the notification</li>
-                </ul>
-                </font>
-                -->
-                
+              
             </div>
 			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px; " align="center" data-position="fixed">
             <a data-role="button" href="#aboutButtonPanel" data-iconpos="left" class="ui-btn-left" style=" margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>

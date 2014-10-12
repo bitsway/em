@@ -13,10 +13,10 @@ var slideFlag=0;
 
 
 //-------GET GEO LOCATION----------------------------
-function getlocationand_askhelp() { //location
+function getlocationand_askhelp() {	
+//location
 //	$("#helperror").text('inside ask help');
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	
 }
 	
 // onSuccess Geolocation
@@ -36,6 +36,7 @@ function onSuccess(position) {
 }
 	
 function onError(error) {
+	
 	$("#lat").val(0);
 	$("#long").val(0);
 	//$("#helperror").text('location not found');
@@ -56,8 +57,10 @@ function onError(error) {
 
 $(function() {
 $("#helperror").text('');
+$("#dataerror").text('');
 
-$("#submitdata").click(function(){	
+$("#submitdata").click(function(){
+		$("#dataerror").text('');
 		var mobileNo=$("#mbNo").val();
 		var strM=mobileNo.toString().length;
 		
@@ -152,40 +155,7 @@ $("#submitdata").click(function(){
 				syncCode='';
 		}
 		
-		//-----------
-		/*if(cM4!=13){
-			if(cM4==11){
-				cnNo4="88"+cnNo4;
-			}
-			else if(strM==0){
-				//nothing 
-			}
-			else{
-				cnNo4='';
-//				errorflag=1;
-				errorStr=errorStr+' Contact 4 .';
-			}				
-		}
-		//-----------
-		if(cM5!=13){
-			if(cM5==11){
-				cnNo5="88"+cnNo5;
-			}
-			else if(strM==0){
-				//nothing 
-			}
-			else{
-				cnNo5='';
-//				errorflag=1;
-				errorStr=errorStr+' Contact 5 .';
-			}				
-		}*/
-		
-//		if(cnNo1=='' && cnNo2=='' && cnNo3=='' && cnNo4=='' && cnNo5==''){
-//				errorflag=1
-//				errorStr=' Invalid Contact Mobile No';
-//			}
-		//$("#dataerror").text(apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&syncCode='+localStorage.syncCode+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3))
+)
 		if (errorflag==1){
 			errorStr = 'Invalid : '+errorStr;
 			$("#dataerror").text(errorStr);			
@@ -201,44 +171,30 @@ $("#submitdata").click(function(){
 						   
 						   success: function(result) {
 				   
-				   if (result!='failed'){
-					   
-					   	localStorage.mobileNo=mobileNo;
-				   		localStorage.pinNo=pinNo;
-						localStorage.emName=emName;
-						localStorage.address=address;
-						localStorage.cnNo1=cnNo1;
-						localStorage.cnNo2=cnNo2;
-						localStorage.cnNo3=cnNo3;
-						localStorage.syncCode=result;
-						$("#pnNo").val(localStorage.pinNo)
-						/*localStorage.cnNo4=cnNo4;
-						localStorage.cnNo5=cnNo5;
-						localStorage.emnotes=emnotes;*/
-						
-					  
-						/*$("#mbNo").val('');
-						$("#pnNo").val('');
-						$("#emName").val('');
-						$("#emAdd").val('');
-						$("#cnNo1").val('');
-						$("#cnNo2").val('');
-						$("#cnNo3").val('');
-						$("#cnNo4").val('');
-						$("#cnNo5").val('');
-						$("#emNotes").val('');*/
-						//alert (result)
-						//var url="#sucess";
-						var url="#homePage";
-						$(location).attr('href',url);
-					  
-				   }else{
-					   $("#dataerror").text('Invalid Mobile or PIN, to register or to get new pin, sms PANIC START to 2764');
-					   //$("#dataerror").text(apipath+'member?mNo='+mobileNo+'&pNo='+pinNo+'&syncCode='+localStorage.syncCode+'&name='+encodeURI(emName)+'&address='+encodeURI(address)+'&cNo1='+encodeURI(cnNo1)+'&cNo2='+encodeURI(cnNo2)+'&cNo3='+encodeURI(cnNo3))
-					   //alert("Invalid PIN");
-					   }
-				   
-				  }
+								   if (result!='failed'){
+									   
+										localStorage.mobileNo=mobileNo;
+										localStorage.pinNo=pinNo;
+										localStorage.emName=emName;
+										localStorage.address=address;
+										localStorage.cnNo1=cnNo1;
+										localStorage.cnNo2=cnNo2;
+										localStorage.cnNo3=cnNo3;
+										localStorage.syncCode=result;
+										$("#pnNo").val(localStorage.pinNo)
+										
+										var url="#homePage";
+										$(location).attr('href',url);
+									  
+								   }else{
+									   $("#dataerror").text('Invalid Mobile or PIN, to register or to get new pin, sms PANIC START to 2764');
+				
+									   }
+									   
+								  },
+						  error: function(result) {			
+									$("#dataerror").text("Submission failed. Please ensure you have internet connection.");
+									}
 			});
 		};
 		
@@ -253,6 +209,7 @@ $('#indanger').click(function(){
 	getlocationand_askhelp();	
 	
 	resetSlider();
+	
 	var url="#inPage";
 	$(location).attr('href',url);
 	
@@ -286,6 +243,7 @@ function get_help() {
 	$("#helperror").hide();
 //	$("#helperror").text('inside get help');
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
+		$("#helperror").show();
 		$("#helperror").text('Invalid authorization, to register or to get new pin, sms PANIC START to 2764 and update your profile');
 	}else{
 		//alert(apipath+'track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
@@ -298,9 +256,11 @@ function get_help() {
 			   success: function(result) {
 				   if (result=='Success'){
 					   if (lat=='0') {
+						   $("#helperror").show();
 						   $("#helperror").text('Emergency Contacts are communicated. Please keep the GPS on to provide better location to your contacts. Use the buttons to report your location if you need to move. Take care. '); 
 							   
 					   }else{
+						   $("#helperror").show();
 						   $("#helperror").text('Emergency Contacts are communicated. Use the buttons to report your location if you need to move. Take care. ');
 						 
 					   }
@@ -309,8 +269,8 @@ function get_help() {
 				   }else{	
 					   $("#helperror").show();
 					   $("#helperror").text('Invalid authorization, to register or to get new pin, sms PANIC START to 2764');
-					   var url="#homePage";
-					   $(location).attr('href',url);
+
+					   
 					   }
 //				setTimeout(
 //					   function (){
@@ -318,25 +278,24 @@ function get_help() {
 //						   }
 //					   ,5000);
 				   
-			   }//result
+			   	}
+//				   ,
+//				error: function(result) {
+//					$("#helperror").show();
+//					$("#helperror").text("Submission failed. Please ensure you have internet connection.");
+//					} //result
 		   
 		   });//ajax
 	
 		}//else
 	
-//	helpCount = helpCount+1;
-//	$("#helperror").text(helpCount);
-//	$("#helperror").text('');
-//	exit();
-	//if (helpCount>2){
-////		$("#helperror").text('inside count');
-//		exit();
-//	}
+
 }
 
 //------------------------check lock Unlock
 
 function checkLockUnlock(){
+	
 	var sliderValue=$("#checkSlider").val();
      if (sliderValue>70 && slideFlag==0){
 		if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
@@ -347,8 +306,9 @@ function checkLockUnlock(){
 		$(location).attr('href',url);
 		
 	}
-	
 }
+
+
 
 function resetSlider(){
 	$("#checkSlider").val(10);
@@ -410,19 +370,27 @@ function feedback(){
 		var txt_fdback=$("#txt_fdback").val();
 		var mobile_no=localStorage.mobileNo;
 		
-		$.ajax({
-			   type: 'POST',
-			   url:apipath+'feedback?mobile_no='+localStorage.mobileNo+'&txt_fdback='+txt_fdback+'&f_app_use='+f_app_use,
-			   success: function(result) {
-				   var f_result=result;				   
-				   if (f_result=='success'){
-					   var url="#inPage";	
-	   					$(location).attr('href',url);
-					   }
-				   
-				   }
-			   
-			   })
+		if(f_app_use==undefined){		
+			$("#f_result_div").text("Please rank this service to submit a feedback.");
+			}else{		
+				$.ajax({
+					   type: 'POST',
+					   url:apipath+'feedback?mobile_no='+localStorage.mobileNo+'&txt_fdback='+txt_fdback+'&f_app_use='+f_app_use,
+					   success: function(result) {
+						   var f_result=result;				   
+						   if (f_result=='success'){
+							   $("#f_result_div").text("Successfully Submitted");
+							   //var url="#inPage";	
+								//$(location).attr('href',url);
+							   }			
+						   
+						   },
+						error: function(result) {			
+							$("#f_result_div").text("Submission failed. Please ensure you have internet connection.");
+							} 
+						 
+					   })
+			}
 		
 		}
 
