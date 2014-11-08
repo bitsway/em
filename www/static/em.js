@@ -1,5 +1,5 @@
-var apipath='http://127.0.0.1:8000/panicbutton/default_with_sync_code/';
-//var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
+//var apipath='http://127.0.0.1:8000/panicbutton/default_with_sync_code/';
+var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
 
 var button_flag=0;
 
