@@ -1,6 +1,5 @@
-// Put your custom code here
-//var apipath='http://127.0.0.1:8000/panicbutton/default_with_sync_code/';
-var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
+var apipath='http://127.0.0.1:8000/panicbutton/default_with_sync_code/';
+//var apipath='http://e.businesssolutionapps.com/panicbutton/default_with_sync_code/';
 
 var button_flag=0;
 
@@ -185,6 +184,8 @@ $("#submitdata").click(function(){
 										
 										var url="#homePage";
 										$(location).attr('href',url);
+										$("#dataerror").text('');
+										$("#dataerror").hide();
 									  
 								   }else{
 									   $("#dataerror").text('Invalid Mobile or PIN, to register or to get new pin, sms PANIC START to 2764');
@@ -342,7 +343,7 @@ function checkNew(){
 		
 			var url="#terms";
 		}else{
-			var url="#inPage";	
+			var url="#homePage";	
 			}
 	
 		$(location).attr('href',url);
