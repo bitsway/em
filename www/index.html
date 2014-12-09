@@ -103,18 +103,20 @@
     </head>
 	<!--onLoad="checkNew()"-->
     <body onLoad="checkNew()">  
-		<!----------------------------1st Page slide to unlock page------------------------------>
-						
-		<div data-theme="c"  data-role="page" id="inPage" >
+
+
+        <!--  --------------------------- terms page------------------  -->
+        
+        <div data-theme="c" data-role="page" id="terms">
 			<!-- about DMP panel-->
-			<div data-role="panel" id="aboutpanel" data-display="overlay"  style="width:60%;">
+			<div data-role="panel" id="aboutTermsPanel" data-display="overlay" style="width:60%;">
 				<!-- panel content goes here -->
 				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
 				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 					</ul>
@@ -124,9 +126,11 @@
 				
 			</div><!-- /panel -->
 			
-			<!-- help panel-->
-			<div data-role="panel" id="sliderHelp" data-display="overlay" data-position="right" style="width:80%;">
+			
+			<!-- profile panel-->
+			<div data-role="panel" id="termsHelp" data-display="overlay" data-position="right" style="width:80%;">
 				<!-- panel content goes here -->
+				
 				<font style="color:#007D7D; font-size:25px;"> Help</font>
 				<br><br>
 				 
@@ -134,54 +138,67 @@
              
                 <ul>
                	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
-                    <li>Update your profile with PIN and contacts numbers  </li>
-                    <li>PIN can be used once  </li>
-                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
+                   <li>Update your profile with PIN and friends & family numbers  </li>
+                   <li>You will need new PIN to reinstall the applicaiton</li>
+                   <li>Please update profile with friends & family numbers if you reinstall or get new pin </br></br></li>
                     
                     
-                    <li>To provide your accurate location, please keep the GPS on</li>
-                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                    <li>To provide your accurate location, please keep the GPS on.</li>
+                    <li>Always inform your friends & family that you are using this application, so they know about the ALERT</br></br></li>
                     <li>Be Safe</li>
                 </ul>
                 </font>
-                <br/><br/>
+                <br/><br/>				
 				
 			</div><!-- /panel -->
 		
             <div data-theme="c" data-role="header" >
-            <img src="header.png" alt="DMP" />
-			<a data-role="button" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()" style="display:none">Exit</a>
+                
+               <img  src="header.png" alt="DMP" />
+				<a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()" style="display:none">Exit</a>
             </div>
 			
-			<div data-theme="c" data-role="content" align="center" style="background-color:#007D7D">
-			<br>
-				<font style="color:#FFF; font-size:25px; text-shadow:none;">Panic Button</font>
-				<br>
-				<font style="color:#FFF; font-size:12px; text-shadow:none;">Child Lock - Slide to Unlock</font>
-				<br>
-				<!--<form>	
-						<select id="checkSlider" name="checkSlider" onChange="checkLockUnlock()"  data-role="slider" style="height:100px;">
-							<option value="off" >Unlock</option>
-							<option value="on">Lock</option>
-						</select>-->
-								
-					<form class="full-width-slider">
-					<input name="checkSlider" id="checkSlider" onChange="checkLockUnlock();" data-highlight="true" min="0" max="100" value="10"  type="range" >
-					
-<!--					 <input type="checkbox" data-role="flipswitch" onChange="checkProfile()" name="flip-checkbox" id="flip-checkbox" data-on-text="Slide-Lock" data-off-text="Slide to Unlock" data-wrapper-class="custom-size-flipswitch">-->
-				</form>
-				<!--<a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" onClick="checkProfile()" style="background-color:#0CC; border:none" >Unlock</a>-->
+			<div data-role="content" align="left">
 				
-					   
+				
+				<font color="#FFFF80" face="Arial, Helvetica, sans-serif" style="text-shadow:none; font-size:12px">Panic button is an initiative from <strong>Grameenphone</strong> and <strong>Dhaka Metropolitan Police (DMP)</strong>. <br><br> Terms of Service: <br>
+                    
+                    <ul>
+                    	<li>Taka 5/- will be charged per alert. </li>
+                        <li>An interment package & GPS function of the Handset has to be in Active Mode </li>
+                        <li>Any Misuse will be addressed by DMP (Dhaka Metropolitan Police) as per country’s prevailing Rules and Laws </li>
+                        <li>The Service depends on a number of component including Handset, GPS, SMS Service, and Internet connection hence Grameenphone and DMP will provide best effort service and will not be liable for service interruption and error occurred </li>
+                    </ul>
+                    
+                 <a data-role="button" href="" onClick="checkProfile()" >Agreed</a>
+                 </font>   
+            
             </div>
 			
-            <!--<div style="font-size:12px; background-color:#FFFFFF; vertical-align:top;" align="center" >&nbsp;
-            <img src="gplogo_small.png" alt="Grameen Phone" /></div>-->
-			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px; " align="center" data-position="fixed">
-            <a data-role="button" href="#aboutpanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
-            <a data-role="button" href="#sliderHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px;">Help</a><!--<img  style="height:25px; width:25px;" src="logo_circle_1.png" alt="DMP" />&nbsp;&nbsp;&nbsp;<img src="gp_logo.png" alt="Grameen Phone" />--></div>
-        </div><!--end slider page-->
-		
+			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
+            <a data-role="button" href="#aboutTermsPanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
+            <a data-role="button" href="#termsHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px; ;">Help</a>			
+			</div><!--/footer-->
+			
+        </div><!--/terms page-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!----------------------------about Page------------------------------>
 		<div data-theme="c" data-role="page" id="about">
 		
@@ -193,7 +210,7 @@
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
                             <li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 					</ul>
@@ -238,7 +255,7 @@
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
                             <li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 					</ul>
@@ -259,13 +276,17 @@
 				</br></br>
 			
 			
-			<font style="color:#F5F5F5; font-size:25px;"> Disclaimer</font>
-				<br><br>
-				 
-                <font face="Verdana, Geneva, sans-serif" size="-1" style=" color:#FFFFFF;text-decoration:none; text-shadow:none;">
-             	  Panic button is an initiative from Grameenphone and Dhaka Metropolitan Police (DMP) as part of service excellence and commitment to the safety of the citizen of Dhaka Metropaliton area. Your panic alert will be received by the nearest Police station and police control including the address and GPS location. Read Help to learn more. While DMP & GP will provide their best combined effort, they will not be held liable for any loss or damage in using this service. Users of the service are advised to take standard safe measures as usual.
-              
-                </font>
+			<font style="color:#F5F5F5; font-size:25px;"> Terms of Service</font>
+            </br></br>
+            <font color="#F5F5F5" face="Arial, Helvetica, sans-serif" style="text-shadow:none; font-size:12px">Panic button is an initiative from <strong>Grameenphone</strong> and <strong>Dhaka Metropolitan Police (DMP)</strong>. <br><br> Terms of Service: <br>
+                
+                <ul>
+                    <li>Taka 5/- will be charged per alert. </li>
+                    <li>An interment package & GPS function of the Handset has to be in Active Mode </li>
+                    <li>Any Misuse will be addressed by DMP (Dhaka Metropolitan Police) as per country’s prevailing Rules and Laws </li>
+                    <li>The Service depends on a number of component including Handset, GPS, SMS Service, and Internet connection hence Grameenphone and DMP will provide best effort service and will not be liable for service interruption and error occurred </li>
+                </ul>
+            </font>
 			
 			
 			
@@ -290,7 +311,7 @@
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
                             <li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 					</ul>
@@ -355,7 +376,7 @@ Providing security and assistance to the victim of criminal case is the prime du
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
                             <li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 					</ul>
@@ -415,7 +436,7 @@ Providing security and assistance to the victim of criminal case is the prime du
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
                             <li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 			  </ul>
@@ -436,19 +457,18 @@ Providing security and assistance to the victim of criminal case is the prime du
              
                 <ul>
                	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
-                    <li>Update your profile with PIN and contacts numbers  </li>
-                    <li>PIN can be used once  </li>
-                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
+                   <li>Update your profile with PIN and friends & family numbers  </li>
+                   <li>You will need new PIN to reinstall the applicaiton</li>
+                   <li>Please update profile with friends & family numbers if you reinstall or get new pin </br></br></li>
                     
                     
-                    <li>To provide your accurate location, please keep the GPS on</li>
-                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                    <li>To provide your accurate location, please keep the GPS on.</li>
+                    <li>Always inform your friends & family that you are using this application, so they know about the ALERT</br></br></li>
                     <li>Be Safe</li>
                 </ul>
                 </font>
-                <br/><br/>
-				
-				
+                <br/><br/>	
+                			
 		  </div><!-- /panel -->
 		
 			<div style="height:40px" data-theme="c" data-role="header" data-position="fixed" >
@@ -463,8 +483,8 @@ Providing security and assistance to the victim of criminal case is the prime du
 			<div data-theme="c" data-role="content" style="background-color:#007D7D" >
 
                 <div id="loading" align="center"><img height="20" width="20"  src="loading.gif" alt="DMP" /></div>
-                <div id="helperror" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word;display:none" > </div>
-                <div id="info" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word; display:none"> </div>
+                <div id="helperror" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word;display:none; text-shadow:none;" > </div>
+                <div id="info" style="color:#F4F4F4; background-color:#09F; border-radius:10px; padding:10px; text-align:center; vertical-align:central; height:auto; word-wrap:break-word; display:none;text-shadow:none;"> </div>
                 </br>
 				<div data-theme="c" id="help" >
 					<input name="lat" id="lat" placesholder="" value="" type="hidden">
@@ -474,6 +494,7 @@ Providing security and assistance to the victim of criminal case is the prime du
 				  <button class="btnHelp" data-theme="c" id="indanger" name="indanger" >
                   <h2><font color="#FF0000" size="-1"><img src="icon-96-xhdpi.png"> </font></h2></button>
                   </br>
+                  <div style="text-align:center;"><font  color="#FFFF00" face="Courier New, Courier, monospace" style="font-size:14px; text-shadow:none">Please ensure that your GPS and Internet package is Active </font></div>
 				
 				</div>
                 </br></br>
@@ -497,7 +518,7 @@ Providing security and assistance to the victim of criminal case is the prime du
 				<br><br><br>
 				  <ul data-role="listview">
 							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
+							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Terms of Service</a></li>
 							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
                             <li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
 			  </ul>
@@ -519,16 +540,17 @@ Providing security and assistance to the victim of criminal case is the prime du
              
                 <ul>
                	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
-                    <li>Update your profile with PIN and contacts numbers  </li>
-                    <li>PIN can be used once  </li>
-                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
-                    <li>To provide your accurate location, please keep the GPS on</li>
-                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
+                   <li>Update your profile with PIN and friends & family numbers  </li>
+                   <li>You will need new PIN to reinstall the applicaiton</li>
+                   <li>Please update profile with friends & family numbers if you reinstall or get new pin </br></br></li>
+                    
+                    
+                    <li>To provide your accurate location, please keep the GPS on.</li>
+                    <li>Always inform your friends & family that you are using this application, so they know about the ALERT</br></br></li>
                     <li>Be Safe</li>
                 </ul>
                 </font>
-                <br/><br/>
-				
+                <br/><br/>				
 				
 		  </div><!-- /panel -->
 			
@@ -546,19 +568,19 @@ Providing security and assistance to the victim of criminal case is the prime du
 			<div  data-role="content" >
 			
 						
-			<font style="color:#CCCCCC; font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif; text-decoration:none; text-shadow:none;" >	
+			<font style="color:#CCCCCC; font-size:13px; font-family:Verdana, Arial, Helvetica, sans-serif; text-decoration:none; text-shadow:none;" >	
 				
-				<label  style="font-size:12px;">Your Mobile No</label>
+				<label  style="font-size:13px;">Your Mobile No</label>
 				<input type="number" name="mbNo" id="mbNo" placeholder="Your Mobile No" value="" >
 				<!--<label style="font-size:12px;">PIN (To get new PIN: SMS "PANIC ON" to 2764)</label><br>
 				Must update profile after getting new PIN -->
-				<label  style="font-size:12px;">PIN (sms <span style="color:#FFFF80;">PANIC START</span> to <span style="color:#FFFF80;">2764</span>)</label>
+				<label  style="font-size:13px;">PIN (sms <span style="color:#FFFF80;">PANIC START</span> to <span style="color:#FFFF80;">2764</span>)</label>
 				<input type="number" name="pnNo" id="pnNo" placeholder="PIN" value="">
-				<label  style="font-size:12px;">Name</label>
+				<label  style="font-size:13px;">Name</label>
 				<input type="text" name="emName" id="emName" placeholder="Name" value="" maxlength="40">
-				<label  style="font-size:12px;">Address</label>
+				<label  style="font-size:13px;">Address</label>
 				<input name="emAdd" type="text" id="emAdd" placeholder="Address" value="" maxlength="150" >				
-                <label  style="font-size:12px;">Contact Numbers</label>
+                <label  style="font-size:13px;">Contact Numbers</label>
 				<input type="number" name="cnNo1" id="cnNo1" placeholder="Mobile One" value="" min="0">
 				<input type="number" name="cnNo2" id="cnNo2" placeholder="Mobile Two" value="" min="0">
 				<input type="number" name="cnNo3" id="cnNo3" placeholder="Mobile Three" value="" min="0">
@@ -578,79 +600,7 @@ Providing security and assistance to the victim of criminal case is the prime du
 			</div><!--/footer-->
 		</div><!-- /profile page -->
 		
-        <!--  --------------------------- terms page------------------  -->
-        
-        <div data-theme="c" data-role="page" id="terms">
-			<!-- about DMP panel-->
-			<div data-role="panel" id="aboutTermsPanel" data-display="overlay" style="width:60%;">
-				<!-- panel content goes here -->
-				<img style="width:100%;"  src="dmp_logo5.jpg" alt="DMP" /><br>
-				<font style="color:#007D7D; font-size:25px;">Panic Button</font>
-				<br><br><br>
-				  <ul data-role="listview">
-							<li style="border-bottom:1px solid #006C6C" ><a onClick="safety()">Safety Tips</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#disclaimer">Disclaimer</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#about">About</a></li>
-							<li style="border-bottom:1px solid #006C6C"><a href="#feedback">Feedback</a></li>
-					</ul>
-					<br>
-				<div style="margin:100%;"></div>
-				<img src="logo_gp_p.png" alt="Grameen Phone" />
-				
-			</div><!-- /panel -->
-			
-			
-			<!-- profile panel-->
-			<div data-role="panel" id="termsHelp" data-display="overlay" data-position="right" style="width:80%;">
-				<!-- panel content goes here -->
-				
-				<font style="color:#007D7D; font-size:25px;"> Help</font>
-				<br><br>
-				 
-                <font face="Verdana, Geneva, sans-serif" size="-1" style="text-decoration:none; text-shadow:none;">
-             
-                <ul>
-               	   <li>To register or get new pin, sms PANIC START to 2764 </br></br></li>
-                    <li>Update your profile with PIN and contacts numbers  </li>
-                    <li>PIN can be used once  </li>
-                    <li>Please update profile with contact numbers if you reinstall or get new pin </br></br></li>
-                    
-                    
-                    <li>To provide your accurate location, please keep the GPS on</li>
-                    <li>Always inform your contacts that you are using this application, so they know about the alert</br></br></li>
-                    <li>Be Safe</li>
-                </ul>
-                </font>
-                <br/><br/>
-				
-				
-			</div><!-- /panel -->
-		
-            <div data-theme="c" data-role="header" >
-                
-               <img  src="header.png" alt="DMP" />
-				<a data-role="button" href="" data-icon="arrow-d" data-iconpos="left" class="ui-btn-right" onClick="exit()" style="display:none">Exit</a>
-            </div>
-			
-			<div data-role="content" align="center">
-				
-				
-				<font color="#CCFFCC" face="Courier New, Courier, monospace" style="text-shadow:none;" >Please ensure <br/><span style="font-size:20px;">Internet & GPS</span> <br/>Activated</font>				
-                
-				</br></br>	
-				<a data-role="button" href="" onClick="checkProfile()" >Next</a>
-				</br>
-				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">Panic button is an initiative from Grameenphone and Dhaka Metropolitan Police (DMP) as part of service excellence and commitment to the safety of the citizens of Dhaka Metropalitpon Area . Your panic alert will be received by the nearest Police station and police control, including the address and GPS location. Read “Help” to learn more</font>	
-				
-					   
-            </div>
-			
-			<div data-theme="c" data-role="footer" style="font-size:12px; height:40px;" align="center" data-position="fixed">
-            <a data-role="button" href="#aboutTermsPanel" data-iconpos="left" class="ui-btn-left" style="margin:0px; padding:0px; width:50px;"><img style="height:28px; width:28px; padding:0px; padding:2px;" src="logo_circle_1.png" alt="DMP" /></a>
-            <a data-role="button" href="#termsHelp" data-iconpos="left" class="ui-btn-right" style="margin:0px; ;">Help</a>			
-			</div><!--/footer-->
-			
-        </div><!--/terms page-->
+
  
     </body>
 </html>

@@ -215,7 +215,7 @@ $('#indanger').click(function(){
 		
 		getlocationand_askhelp();	
 		
-		resetSlider();
+//		resetSlider();
 	}
 	
 
@@ -255,6 +255,7 @@ function get_help() {
 	if(localStorage.mobileNo=='' || localStorage.mobileNo==undefined || localStorage.pinNo=='' || localStorage.pinNo==undefined){
 		button_flag=0;
 		$("#helperror").show();
+		$("#loading").hide();
 		$("#helperror").text('Invalid authorization, to register or to get new pin, sms PANIC START to 2764 and update your profile');
 	}else{
 		//alert(apipath+'track?mNo='+localStorage.mobileNo+'&pNo='+localStorage.pinNo+'&lat='+lat+'&lon='+long);
