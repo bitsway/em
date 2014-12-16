@@ -66,8 +66,8 @@ $("#submitdata").click(function(){
 		var strM=mobileNo.toString().length;
 		
 		var pinNo=$("#pnNo").val();
-		var emName=$("#emName").val();
-		var address=$("#emAdd").val();
+		var emName=($("#emName").val()).replace(";"," ");
+		var address=($("#emAdd").val()).replace(";"," ");
 		//var emnotes=$("#emNotes").val();
 		
 		var cnNo1=$("#cnNo1").val();
